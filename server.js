@@ -9,12 +9,12 @@ export class Server {
                 ['cafe-tui', 'fake-bee', '--instant-stamp', '--instant-usable'],
                 { env: process.env },
                 buffer => {
-                    process.stdout.write(buffer)
+                    process.stdout.write(buffer.toString())
                     if (buffer.includes('Up and running')) {
                         resolve()
                     }
                 },
-                buffer => process.stderr.write(buffer)
+                buffer => process.stderr.write(buffer.toString())
             )
         })
     }
