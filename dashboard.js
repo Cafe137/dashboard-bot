@@ -22,7 +22,7 @@ export class Dashboard {
             buffer => process.stderr.write(buffer.toString())
         )
         return new Promise(async resolve => {
-            await System.runProcess(
+            System.runProcess(
                 'npm',
                 ['start'],
                 {
@@ -41,7 +41,7 @@ export class Dashboard {
                     }
                 },
                 buffer => process.stderr.write(buffer.toString())
-            )
+            ).catch(() => {})
         })
     }
 
