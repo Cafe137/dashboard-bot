@@ -10,7 +10,7 @@ async function main() {
     const server = new Server()
     await server.start()
 
-    const browser = await chromium.launch({ headless: false })
+    const browser = await chromium.launch({ headless: true })
     const context = await browser.newContext()
     const page = await context.newPage()
 
