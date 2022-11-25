@@ -45,7 +45,7 @@ export class Dashboard {
     async close() {
         await System.execAsync(
             'killall',
-            ['node'],
+            ['-s', '9', 'node'],
             { env: process.env },
             buffer => process.stdout.write(buffer),
             buffer => process.stderr.write(buffer)
