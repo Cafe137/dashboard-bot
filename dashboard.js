@@ -32,7 +32,7 @@ export class Dashboard {
                         REACT_APP_BEE_DESKTOP_ENABLED: 'true'
                     },
                     cwd: path,
-                    signal: this.abortController
+                    signal: this.abortController.signal
                 },
                 buffer => {
                     process.stdout.write(buffer.toString())
