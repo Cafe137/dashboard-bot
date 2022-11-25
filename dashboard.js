@@ -48,7 +48,7 @@ export class Dashboard {
             ['-s', '9', 'node'],
             { env: process.env },
             buffer => process.stdout.write(buffer),
-            buffer => process.stderr.write(buffer)
+            buffer => process.stderr.write(buffer.toString())
         )
     }
 }
