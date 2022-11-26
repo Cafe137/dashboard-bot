@@ -1,4 +1,4 @@
-import { System } from 'cafe-utility'
+import { Strings, System } from 'cafe-utility'
 
 const url = 'https://github.com/ethersphere/bee-dashboard/archive/refs/heads/fix/ultra-light-node-execution-order.zip'
 const path = 'bee-dashboard-fix-ultra-light-node-execution-order'
@@ -9,17 +9,21 @@ export class Dashboard {
     async start() {
         await System.runProcess('npx', ['cafe-tui', 'get-unzip', url, '.'], { env: process.env })
         await System.runProcess('npm', ['install', '--ignore-scripts'], { env: process.env, cwd: path })
+        await System.runProcess('npm', ['run', 'build'], {
+            env: {
+                ...process.env,
+                REACT_APP_BEE_DESKTOP_URL: 'http://localhost:3054',
+                REACT_APP_BEE_DESKTOP_ENABLED: 'true'
+            },
+            cwd: path
+        })
         return new Promise(async resolve => {
             System.runProcess(
-                'npm',
-                ['start'],
+                'npx',
+                ['serve', '-p', '3002'],
                 {
-                    env: {
-                        ...process.env,
-                        REACT_APP_BEE_DESKTOP_URL: 'http://localhost:3054',
-                        REACT_APP_BEE_DESKTOP_ENABLED: 'true'
-                    },
-                    cwd: path,
+                    env: process.env,
+                    cwd: Strings.joinUrl(path, 'build'),
                     signal: this.abortController.signal
                 },
                 buffer => {
