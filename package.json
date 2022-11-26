@@ -9,7 +9,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "cafe-utility": "^4.18.0",
+        "cafe-utility": "^4.19.0",
         "node-fetch": "^3.3.0",
         "playwright": "^1.28.0"
     }

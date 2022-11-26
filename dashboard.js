@@ -7,20 +7,8 @@ export class Dashboard {
     abortController = new AbortController()
 
     async start() {
-        await System.runProcess(
-            'npx',
-            ['cafe-tui', 'get-unzip', url, '.'],
-            { env: process.env },
-            buffer => process.stdout.write(buffer.toString()),
-            buffer => process.stderr.write(buffer.toString())
-        )
-        await System.runProcess(
-            'npm',
-            ['install', '--ignore-scripts'],
-            { env: process.env, cwd: path },
-            buffer => process.stdout.write(buffer.toString()),
-            buffer => process.stderr.write(buffer.toString())
-        )
+        await System.runProcess('npx', ['cafe-tui', 'get-unzip', url, '.'], { env: process.env })
+        await System.runProcess('npm', ['install', '--ignore-scripts'], { env: process.env, cwd: path })
         return new Promise(async resolve => {
             System.runProcess(
                 'npm',
@@ -39,9 +27,8 @@ export class Dashboard {
                     if (buffer.includes('3002')) {
                         resolve()
                     }
-                },
-                buffer => process.stderr.write(buffer.toString())
-            ).catch(() => {})
+                }
+            )
         })
     }
 

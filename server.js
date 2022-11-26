@@ -13,8 +13,7 @@ export class Server {
                     if (buffer.includes('Up and running')) {
                         resolve()
                     }
-                },
-                buffer => process.stderr.write(buffer.toString())
+                }
             )
         })
     }
