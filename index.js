@@ -56,6 +56,7 @@ async function main() {
     await browser.close()
     await server.close()
     await dashboard.close()
+    process.exit(0)
 }
 
 main()
