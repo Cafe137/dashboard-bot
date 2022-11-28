@@ -6,7 +6,7 @@ export class Server {
         return new Promise(resolve => {
             System.runProcess(
                 'npx',
-                ['cafe-tui', 'fake-bee', '--instant-stamp', '--instant-usable'],
+                ['cafe-tui', 'fake-bee', '--instant-stamp', '--instant-usable', '--ultra-light'],
                 { env: process.env },
                 buffer => {
                     process.stdout.write(buffer.toString())
