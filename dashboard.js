@@ -8,6 +8,16 @@ export class Dashboard {
 
     async start() {
         await System.runProcess('npx', ['cafe-tui', 'get-unzip', url, '.'], { env: process.env })
+        await System.runProcess(
+            'npx',
+            ['cafe-tui', 'monkey-patch', `${path}/src/pages/restart/LightModeRestart.tsx`, '45_000', '0'],
+            { env: process.env }
+        )
+        await System.runProcess(
+            'npx',
+            ['cafe-tui', 'monkey-patch', `${path}/src/providers/Bee.tsx`, '30_000', '10_000'],
+            { env: process.env }
+        )
         await System.runProcess('npm', ['install', '--ignore-scripts'], { env: process.env, cwd: path })
         await System.runProcess('npm', ['run', 'build'], {
             env: {
